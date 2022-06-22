@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-center">
+                    <main role="main" class="main-content" id="main-content">
+                        <div class="titleCont">
+                            <h6 class="main-title" id="main-title"> Writer: <a href="{% url 'account:user_profile' text.user.id %}">{{ text.user.username }}</a> - {{ text.update | date:'Y M' }}</h6>
+
+                            <h1 >
+                                {{ text.body }}
+                                {% if request.user.id == text.user.id %}
+                                 | <a href="{% url 'home:text_delete' text.id %}" class="btn btn-danger">Delete</a>
+                                | <a href="{% url 'home:text_update' text.id %} " class="btn btn-primary ">Update</a>
+                                {% endif %}
+                            </h1>
+                        </div>
+                    </main>
+            </div>
+{% endblock %}
